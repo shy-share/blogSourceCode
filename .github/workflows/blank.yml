@@ -8,7 +8,7 @@ on:
 env:
   GIT_USER: shy
   GIT_EMAIL: 1061867552@qq.com
-  THEME_REPO: blinkfox/hexo-theme-matery
+  THEME_REPO: sanonz/hexo-theme-concise
   THEME_BRANCH: master
   DEPLOY_REPO: shy-share/shy-share.github.io
   DEPLOY_BRANCH: master
