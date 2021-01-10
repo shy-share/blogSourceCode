@@ -37,7 +37,7 @@ tags:
 
 - react  react核心库
 - react-deveployment   虚拟DOM库
-- ​                      将jsx转化为js库
+- 将jsx转化为js库
 
 # jsx语法规则
 
