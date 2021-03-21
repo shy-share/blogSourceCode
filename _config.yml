@@ -13,11 +13,11 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url:  https://shy-share.github.io/
-root: /shy-share.github.io
-permalink: posts/:abbrlink/
+url:  https://shyblog.world
+root: /
+permalink: posts/:abbrlink.html
 abbrlink:
-  alg: crc32 #support crc16(default) and crc32
+  alg: crc16 #support crc16(default) and crc32
   rep: dec #support dec(default) and hex
 permalink_defaults:
 pretty_urls:
@@ -137,3 +137,28 @@ feed:
   content_limit: 140
   content_limit_delim: ' '
   order_by: -date
+  #本地搜索
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true #文章标题
+    date: true #发表日期
+    path: true #路径
+    text: true #文本字段
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true #标签
+
+#懒加载
+lazyload:
+  enable: true 
+  onlypost: false  # 是否只对文章的图片做懒加载
+  loadingImg: # eg ./images/loading.gif
