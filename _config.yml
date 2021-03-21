@@ -17,7 +17,7 @@ url:  https://shyblog.world
 root: /
 permalink: posts/:abbrlink.html
 abbrlink:
-  alg: crc16 #support crc16(default) and crc32
+  alg: crc32 #support crc16(default) and crc32
   rep: dec #support dec(default) and hex
 permalink_defaults:
 pretty_urls:
