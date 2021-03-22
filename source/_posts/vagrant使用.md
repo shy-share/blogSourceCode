@@ -22,7 +22,7 @@ categories:
    
    ```
 
-   ![image-20200425192105128](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20201107180724201.png)
+   ![image-20200425192221398](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20200425192105128.png)
 
 3. 运行以下命令
 
@@ -91,7 +91,7 @@ end
 
 端口号每个不一样，非常好辨认
 
-![image-20201107180724201](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20201107180724201.png)
+![image-20201107180724201](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20200425192221398.png)
 
 ## vagrant常用命令
 
