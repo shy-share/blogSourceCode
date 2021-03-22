@@ -159,6 +159,12 @@ jsonContent:
 
 #懒加载
 lazyload:
-  enable: true 
+  enable: false 
   onlypost: false  # 是否只对文章的图片做懒加载
   loadingImg: # eg ./images/loading.gif
+# 自动生成sitemap
+sitemap:
+ path: sitemap.xml
+ baidusitemap:
+  path: baidusitemap.xml
+
