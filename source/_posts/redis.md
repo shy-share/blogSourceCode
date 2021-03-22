@@ -59,7 +59,7 @@ redis-cli --cluster add-node --slave --master-id c1dcc6197201c958fb06fa7737190e4
 
 redis-cli --cluster reshard 192.168.0.21:7001
 
-![image-20210321211957111](https://raw.githubusercontent.com/shy-share/Picture-bed/master/img/image-20210321211957111.png)
+![image-20210322160409452](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210322160409452.png)
 
 ### 读写分离
 
@@ -93,7 +93,7 @@ redis的内存不建议太大，一般是8g或者16g，如果内存比较大，r
 
 集中式存储
 
-![image-20210321212429403](https://raw.githubusercontent.com/shy-share/Picture-bed/master/img/image-20210321212429403.png)
+![image-20210322160443703](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210322160443703.png)
 
 #### 10000端口
 
@@ -123,7 +123,7 @@ fail： 某个节点判断另一个节点fail之后，就发送fail给其他节�
 
 ## 测试
 
-![image-20210321212447519](https://raw.githubusercontent.com/shy-share/Picture-bed/master/img/image-20210321212447519.png)
+![image-20210322160504870](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210322160504870.png)
 
 图中出现的是moved的意思是应该到192.168.0.23的机器上 ，端口为7005的机器上进行这个命令的写入
 
