@@ -4,7 +4,6 @@ tags:
   - linux
 abbrlink: 4202801640
 date: 2021-03-22 10:48:50
-categories:
 ---
 
 ## 步骤

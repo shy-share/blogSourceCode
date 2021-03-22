@@ -5,8 +5,6 @@ date: {{ date }}
 summary:
 tags:
   -
-categories:
-  -
 top:
 ​---
 ---
