@@ -6,6 +6,8 @@ tags:
    - redis
 ---
 
+###  集群配置
+
 ```bash
 mkdir -p /etc/redis-cluster
 mkdir -p /var/log/redis
