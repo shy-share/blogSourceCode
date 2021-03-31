@@ -1,5 +1,5 @@
 ---
-title: mysql执行流程
+title: mysql（1）
 tags:
   - mysql
 date: 2021-03-24 08:54:59
@@ -120,11 +120,24 @@ innodb_log_group_home_dir
 innodb_log_file_size
 ```
 
-
-
 ##### binlog
 
 作用：主要用来进行主从备份的
+
+##### undolog
+
+undolog这个日志主要是用来进行事务回滚的，一般只有进行数据变动的时候才会有undolog，比如update insert delete，但是select 是没有的，因为select只是获取数据，并没有对数据进行变更
+
+比如你插入一条数据，undolog中记录的是 删除一条数据，是和你进行操作的行为是相反的
+
+###### 结构
+
+- 这条日志开始的问题只
+- 主键的各列长度和值，主键可能是你设置的表的主键，也可能是三个字段组成的联合主键，也有可能是myslq默认添加的row_id作为主键
+- 表id
+- undolog日志编号
+- undolog日志类型 ，比如 insert语句的undolog的日志类型是 TRX_UNDO_INSERT_REC
+- 这条日志的结束位置
 
 ##### 区别
 
