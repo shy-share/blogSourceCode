@@ -38,5 +38,7 @@ select * from a,b where a.id=b.id
 
 嵌套循环关联
 
+## 删除
+
 
 
