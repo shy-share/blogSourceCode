@@ -141,6 +141,24 @@ redolog block中存放了许多个单行日志，刷新到磁盘按照redolog bl
 3. 后台线程定时刷新，有一个线程每个1秒就会吧redolog buffer中的redolog block刷入到磁盘文件
 4. mysql关闭的时候，redolog buffer全部刷新到磁盘中
 
+###### 参数
+
+InnoDB 提供了 innodb_flush_log_at_trx_commit 参数，它有三种可能取值：
+
+- 设置为 0 的时候，表示每次事务提交时都只是把 redo log 留在 redo log buffer 中 ;
+- 设置为 1 的时候，表示每次事务提交时都将 redo log 直接持久化到磁盘；
+- 设置为 2 的时候，表示每次事务提交时都只是把 redo log 写到 page cache。
+
+>一个没有提交的事务的 redo log，也是可能已经持久化到磁盘的。
+
+###### 组提交
+
+日志逻辑序列号（log sequence number，LSN）的概念。LSN 是单调递增的，用来对应 redo log 的一个个写入点。每次写入长度为 length 的 redo log， LSN 的值就会加上 length。
+
+>LSN 也会写到 InnoDB 的数据页中，来确保数据页不会被多次执行重复的 redo log。
+
+比如说有三个事务并发提交了，对应的 LSN 分别是 50、120 和 160,如果50的lsn对应的事务先到达os cache之后，它就会成为leader，等到它开始要进行刷盘的时候，此时这个组里面已经有三个事务了，lsn变为了160，所以这个事务写盘的时候，带的lsn是160，因此等 这个事务返回时，所有 LSN 小于等于 160 的 redo log，都已经被持久化到磁盘；
+
 ###### 命令
 
 ```bash
@@ -155,6 +173,38 @@ innodb_log_file_size
 ##### binlog
 
 作用：主要用来进行主从备份的
+
+###### 刷盘方式
+
+- sync_binlog=0 的时候，表示每次提交事务都只 write，不 fsync；
+- sync_binlog=1 的时候，表示每次提交事务都会执行 fsync；
+- sync_binlog=N(N>1) 的时候，表示每次提交事务都 write，但累积 N 个事务后才 fsync。
+
+>在出现 IO 瓶颈的场景里，将 sync_binlog 设置成一个比较大的值，可以提升性能。在实际的业务场景中，考虑到丢失日志量的可控性，一般不建议将这个参数设成 0，比较常见的是将其设置为 100~1000 中的某个数值。但是，将 sync_binlog 设置为 N，对应的风险是：如果主机发生异常重启，会丢失最近 N 个事务的 binlog 日志。
+
+###### 组提交
+
+如果你想提升 binlog 组提交的效果，可以通过设置 binlog_group_commit_sync_delay 和 binlog_group_commit_sync_no_delay_count 来实现。
+
+- binlog_group_commit_sync_delay 参数，表示延迟多少微秒后才调用 fsync;
+
+- binlog_group_commit_sync_no_delay_count 参数，表示累积多少次以后才调用 fsync。、
+
+  > 这两个条件是或的关系，也就是说只要有一个满足条件就会调用 fsync。所以，当 binlog_group_commit_sync_delay 设置为 0 的时候，binlog_group_commit_sync_no_delay_count 也无效了。
+
+###### 格式
+
+主要分为三种格式，statement row和mixed
+
+- statement 格式下，记录到 binlog 里的是语句原文，就是你在mysql中执行的是什么语句，在binlog也是同样的语句，但是这样可能会导致出现索引不通的情况出现，当索引不通的时候，你在执行delete的时候还使用了limit，那么就会出现错误删除的情况
+- rpw 格式下，记录的是哪个表，删除的主键id是什么，所以是不会执行错误的，但是它同样有一个缺点，就是当数据量大的时候，非常消耗空间
+- ，mixed其实就是前两种格式的融合
+
+> mixed的来源
+>
+> - 因为有些 statement 格式的 binlog 可能会导致主备不一致，所以要使用 row 格式。
+> - 但 row 格式的缺点是，很占空间。比如你用一个 delete 语句删掉 10 万行数据，用 statement 的话就是一个 SQL 语句被记录到 binlog 中，占用几十个字节的空间。但如果用 row 格式的 binlog，就要把这 10 万条记录都写到 binlog 中。这样做，不仅会占用更大的空间，同时写 binlog 也要耗费 IO 资源，影响执行速度。
+> - 所以，MySQL 就取了个折中方案，也就是有了 mixed 格式的 binlog。mixed 格式的意思是，MySQL 自己会判断这条 SQL 语句是否可能引起主备不一致，如果有可能，就用 row 格式，否则就用 statement 格式。
 
 ##### undolog
 
@@ -176,6 +226,26 @@ undolog这个日志主要是用来进行事务回滚的，一般只有进行数�
 1. redo log 是 InnoDB 引擎特有的；binlog 是 MySQL 的 Server 层实现的，所有引擎都可以使用。
 2. redo log 是物理日志，记录的是“在某个数据页上做了什么修改”；binlog 是逻辑日志，记录的是这个语句的原始逻辑，比如“给 ID=2 这一行的 c 字段加 1 ”
 3. redo log 是循环写的，空间固定会用完；binlog 是可以追加写入的。“追加写”是指 binlog 文件写到一定大小后会切换到下一个，并不会覆盖以前的日志。
+
+> 为什么 binlog cache 是每个线程自己维护的，而 redo log buffer 是全局共用的？
+>
+> MySQL 这么设计的主要原因是，binlog 是不能“被打断的”。一个事务的 binlog 必须连续写，因此要整个事务完成后，再一起写到文件里。
+
+##### 非双1
+
+一般情况下，把生产库改成“非双 1”配置，是设置 innodb_flush_logs_at_trx_commit=2、sync_binlog=1000。
+
+### **crash-safe**
+
+即在 InnoDB 存储引擎中，事务提交过程中任何阶段，MySQL突然奔溃，重启后都能保证事务的完整性，已提交的数据不会丢失，未提交完整的数据会自动进行回滚
+
+这个能力依赖的就是redo log和unod log两个日志。
+
+实际上数据库的 crash-safe 保证的是：
+
+- 如果客户端收到事务成功的消息，事务就一定持久化了；
+- 如果客户端收到事务失败（比如主键冲突、回滚等）的消息，事务就一定失败了；
+- 如果客户端收到“执行异常”的消息，应用需要重连后通过查询当前状态来继续后续的逻辑。此时数据库只需要保证内部（数据和日志之间，主库和备库之间）一致就可以了。
 
 ### 磁盘文件
 
