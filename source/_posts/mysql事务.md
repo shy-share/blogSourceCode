@@ -4,7 +4,7 @@ tags:
   - mysql
 abbrlink: 1027016161
 date: 2021-03-29 14:54:54
-top:
+toc: true
 ---
 
 # 事务

@@ -4,7 +4,7 @@ tags:
   - redis
 abbrlink: 3560590924
 date: 2021-03-27 12:05:55
-top:
+toc: true
 ---
 
 ### 基础命令

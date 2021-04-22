@@ -4,7 +4,7 @@ tags:
   - mysql
 abbrlink: 19189241
 date: 2021-04-04 08:49:25
-top:
+toc: true
 ---
 
 ### DDL

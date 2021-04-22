@@ -4,7 +4,7 @@ tags:
   - mysql
 abbrlink: 1181292247
 date: 2021-03-31 20:47:03
-top:
+toc: true
 ---
 
 ## 表结构分类

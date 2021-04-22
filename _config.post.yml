@@ -1,0 +1,9 @@
+widgets:
+    -
+        type: toc
+        position: left
+sidebar:
+    left:
+        sticky: true
+    right:
+        sticky: true

@@ -4,7 +4,7 @@ tags:
   - mysql
 abbrlink: 1895910490
 date: 2021-04-01 13:11:32
-top:
+toc: true
 ---
 
 想要了解mysql的索引，首先要了解mysql的物理存储结构

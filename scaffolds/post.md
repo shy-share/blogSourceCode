@@ -3,6 +3,8 @@ title: {{ title }}
 date: {{ date }}
 tags:
   -
+#默认显示目录
+toc: true
 #自定义摘要
 excerpt：
 #加密的时候这个 为-1

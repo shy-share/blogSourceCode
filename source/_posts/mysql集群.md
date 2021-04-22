@@ -4,7 +4,7 @@ tags:
   - mysql
 abbrlink: 1202068288
 date: 2021-04-04 12:15:37
-top:
+toc: true
 ---
 
 ## 主从架构
