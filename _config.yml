@@ -101,7 +101,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-icarus-master
+theme: hexo-theme-amazing-master
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -110,8 +110,8 @@ deploy:
   repo: git@github.com:shy-share/shy-share.github.io.git
   branch: master
 
-wordCount:
-  enable: true # 将这个值设置为 true 即可.
-  postWordCount: true
-  min2read: true
-  totalCount: true
+# wordCount:
+#   enable: true # 将这个值设置为 true 即可.
+#   postWordCount: true
+#   min2read: true
+#   totalCount: true

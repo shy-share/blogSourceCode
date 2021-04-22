@@ -99,7 +99,7 @@ head:
 navbar:
     # Navigation menu items
     menu:
-        Home: /
+        home: /
         Archives: /archives/
         Categories: /categories/
         Tags: /tags/
@@ -154,21 +154,17 @@ search:
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
-    type: gitalk
-    client_id: 335695929c00ccaea901
-    client_secret: b8b33a2e772e2defc0fb01ff7f05254cfb3a8314
-    repo: https://shy-share.github.io
-    owner: shy-share
-    admin:
-        - shy-share
-    per_page: 20                    # 可选填
-    distraction_free_mode: false    # 可选填
-    pager_direction: last           # 可选填
-    create_issue_manually: false    # 可选填
-    proxy:                          # 可选填
-    flip_move_options:              # 可选填
-    enable_hotkey: true             # 可选填
-    language: zh-CN                 # 可选填
+    type: valine
+    enable: true
+    app_id: jadncKpLE7wt7lfl6a2OJub6-9Nh9j0Va
+    app_key: DDgwN2gmiGGXUYEDLSlPhI1a
+    notify: false
+    verify: false
+    visitor: true
+    avatar: 'mm' # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide
+    pageSize: 10
+    placeholder: 'just go go' # Comment Box placeholder
+    background: /medias/comment_bg.png
 # Donate plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
 # donates:
@@ -230,11 +226,11 @@ widgets:
         position: left
         type: profile
         # Author name
-        author: Xinyu Liu
+        author: Heyi Sun
         # Author title
-        author_title: liuxinyu0922@163.com
+        author_title: 1061867552@qq.com
         # Author's current location
-        location: Hangzhou, China
+        location: BeiJing, China
         # URL or path to the avatar image
         avatar: 
         # Whether show the rounded avatar image
@@ -242,7 +238,7 @@ widgets:
         # Email address for the Gravatar
         gravatar: liuxinyu0922@hotmail.com
         # URL or path for the follow button
-        follow_link: 'https://www.github.com/AlphaLxy'
+        follow_link: 'https://github.com/shy-share'
         # Links to be shown on the bottom of the profile widget
         social_links:
             # Github:
@@ -323,6 +319,8 @@ widgets:
 plugins:
     # Enable page startup animations
     animejs: true
+     # 启用百度推送插件
+    baidu_push: true
     # Show the "back to top" button
     back_to_top: true
     # Baidu Analytics plugin settings
@@ -338,6 +336,9 @@ plugins:
     # BuSuanZi site/page view counter
     # https://busuanzi.ibruce.info
     busuanzi: true
+        site_uv_offset: 100
+        site_pv_offset: 200
+
     # CNZZ statistics
     # https://www.umeng.com/web
     cnzz:
