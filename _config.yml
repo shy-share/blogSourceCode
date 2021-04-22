@@ -101,7 +101,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-matery
+theme: hexo-theme-icarus-master
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -115,50 +115,3 @@ wordCount:
   postWordCount: true
   min2read: true
   totalCount: true
-
-#搜索
-search:
-  path: search.xml
-  field: post
-
-#Rss
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
-  hub:
-  content:
-  content_limit: 140
-  content_limit_delim: ' '
-  order_by: -date
-  #本地搜索
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true #文章标题
-    date: true #发表日期
-    path: true #路径
-    text: true #文本字段
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: false
-    tags: true #标签
-
-#懒加载
-lazyload:
-  enable: false 
-  onlypost: false  # 是否只对文章的图片做懒加载
-  loadingImg: # eg ./images/loading.gif
-
-# prism_plugin:
-#   mode: 'preprocess'    # realtime/preprocess
-#   theme: 'tomorrow'
-#   line_number: true    # default false
-#   custom_css:

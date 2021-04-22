@@ -2,6 +2,7 @@
 title: rocketmq
 tags:
   - rocketmq
+abbrlink: 1048239581
 date: 2021-03-27 09:03:49
 top:
 ---

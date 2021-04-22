@@ -2,6 +2,7 @@
 title: volatile
 tags:
   - java并发
+abbrlink: 4266433718
 date: 2021-03-27 09:07:59
 top:
 ---

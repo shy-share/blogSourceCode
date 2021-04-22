@@ -2,6 +2,7 @@
 title: linux结构
 tags:
   - linux
+abbrlink: 3640054253
 date: 2021-03-28 13:36:25
 top:
 ---

@@ -2,6 +2,7 @@
 title: mysql集群
 tags:
   - mysql
+abbrlink: 1202068288
 date: 2021-04-04 12:15:37
 top:
 ---
