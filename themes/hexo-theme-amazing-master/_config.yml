@@ -141,18 +141,18 @@ search:
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
-    type: gitalk
-    language: zh-CN #zh-CN #Localization language key, en, zh-CN and zh-TW are currently available.
-    owner: shy-share         # (required) GitHub user name
-    repo: gittalk          # (required) GitHub repository name
-    client_id: 335695929c00ccaea901     # (required) OAuth application client id
-    client_secret: b854c4372feb56a534b844fab1636cf094dbc5f3 # (required) OAuth application client secret
-    admin: ['shy-share']
-    create_issue_manually: true
-    distraction_free_mode: false
-    has_hot_recommend: true # 是否有热门推荐
-    has_latest_comment: true #是否有最新评论
-    proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token #解决登录后403问题
+    type: valine
+    app_id: jadncKpLE7wt7lfl6a2OJub6-9Nh9j0Va
+    app_key: DDgwN2gmiGGXUYEDLSlPhI1a
+    notify: false
+    verify: false
+    visitor: true
+    avatar: 'mp' # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide
+    placeholder: '留下您的高见！'# Comment Box placeholder
+    has_latest_comment: true #是否有最新评论 true-有，false-无
+    owner: 殃の酱 #博主名 最新评论标注[博主]
+    required_fields: ['nick', 'mail', 'link']
+    lang: zh-CN #zh-CN zh-TW en ja
 # comment:
 #     type: valine
 #     app_id: rOtVIhvG3kd7QkMKe3naSU9R-gzGzoHsz
