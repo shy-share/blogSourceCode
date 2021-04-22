@@ -13,6 +13,8 @@ top:
 
 [git在线练习网站](https://learngitbranching.js.org/?demo=&locale=zh_CN)
 
+<!-- more -->
+
 # 原理
 
 ![image-20210418091116305](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210418091116305.png)

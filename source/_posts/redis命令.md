@@ -9,6 +9,8 @@ top:
 
 ### 基础命令
 
+<!-- more -->
+
 ```bash
 # nx 都是在key不存在的时候进行设置，通过这个可以实现最简单的分布式锁
 set key  value nx

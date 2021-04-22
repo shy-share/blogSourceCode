@@ -9,6 +9,8 @@ top:
 
 # sql语句
 
+<!-- more -->
+
 ## database
 
 ```SQL

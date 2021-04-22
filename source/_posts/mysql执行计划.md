@@ -9,6 +9,8 @@ top:
 
 ## Explain
 
+<!-- more -->
+
 ### 模样
 
 ![image-20210404081229369](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210404081229369.png)

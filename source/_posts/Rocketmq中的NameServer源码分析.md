@@ -9,6 +9,8 @@ top:
 
 ## 创建NamesrvController
 
+<!-- more -->
+
 > 我这里都是截取的部分代码，梳理大概逻辑，具体细节部分需要大家自行去阅读源码
 
 ### NamesrvStartup

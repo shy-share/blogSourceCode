@@ -9,6 +9,8 @@ top:
 
 ### 基本结构
 
+<!-- more -->
+
 ![image-20210328133652101](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210328133652101.png)
 
 #### VFS层

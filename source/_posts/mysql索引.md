@@ -11,6 +11,8 @@ top:
 
 ## 物理存储结构
 
+<!-- more -->
+
 ![image-20210401131310090](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210401131310090.png)
 
 mysql的物理存储结构其实就是上图所示，是一个双向链表，每个结点的都是一个数据页，

@@ -9,6 +9,8 @@ tags:
 
 ### 集群配置
 
+<!-- more -->
+
 ```bash
 mkdir -p /etc/redis-cluster
 mkdir -p /var/log/redis

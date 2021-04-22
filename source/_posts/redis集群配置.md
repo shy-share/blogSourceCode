@@ -8,6 +8,9 @@ top:
 ---
 
 ## 单机基本配置
+
+<!-- more -->
+
 ```bash
 #将redis目录下面utils中的redis_init_script复制到/etc/init.d/目录下，并且改为为redis_端口号
 cp redis_init_script /etc/init.d/redis_6379

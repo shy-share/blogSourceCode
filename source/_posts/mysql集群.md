@@ -9,6 +9,8 @@ top:
 
 ## 主从架构
 
+<!-- more -->
+
 其实就是一个master服务器和一个slave服务器
 
 master服务器主要负责平常的读和写，而slave就是要同步master的数据
