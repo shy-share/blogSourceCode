@@ -3,6 +3,7 @@ title: kafka-1
 tags:
   - kafka
 toc: true
+abbrlink: 364974771
 date: 2021-04-28 07:06:01
 ---
 

@@ -3,6 +3,7 @@ title: hashmap
 tags:
   - java
 toc: true
+abbrlink: 3398514521
 date: 2021-04-29 06:34:30
 ---
 
