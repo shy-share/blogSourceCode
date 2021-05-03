@@ -28,5 +28,98 @@ bean的标识符必须唯一，一般情况下只有一个标识符，但可以�
 <alias name="fromName" alias="toName"/>
 ```
 
+sdlkfj 
 
+
+
+
+
+### 容器的启动流程
+
+```java
+@Override
+public void refresh() throws BeansException, IllegalStateException {
+   synchronized (this.startupShutdownMonitor) {
+      // Prepare this context for refreshing.
+      prepareRefresh();
+
+      // Tell the subclass to refresh the internal bean factory.
+      ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
+
+      // Prepare the bean factory for use in this context.
+      prepareBeanFactory(beanFactory);
+
+      try {
+         // Allows post-processing of the bean factory in context subclasses.
+         postProcessBeanFactory(beanFactory);
+
+         // Invoke factory processors registered as beans in the context.
+         invokeBeanFactoryPostProcessors(beanFactory);
+
+         // Register bean processors that intercept bean creation.
+         registerBeanPostProcessors(beanFactory);
+
+         // Initialize message source for this context.
+         initMessageSource();
+
+         // Initialize event multicaster for this context.
+         initApplicationEventMulticaster();
+
+         // Initialize other special beans in specific context subclasses.
+         onRefresh();
+
+         // Check for listener beans and register them.
+         registerListeners();
+
+         // Instantiate all remaining (non-lazy-init) singletons.
+         finishBeanFactoryInitialization(beanFactory);
+
+         // Last step: publish corresponding event.
+         finishRefresh();
+      }
+
+      catch (BeansException ex) {
+         if (logger.isWarnEnabled()) {
+            logger.warn("Exception encountered during context initialization - " +
+                  "cancelling refresh attempt: " + ex);
+         }
+
+         // Destroy already created singletons to avoid dangling resources.
+         destroyBeans();
+
+         // Reset 'active' flag.
+         cancelRefresh(ex);
+
+         // Propagate exception to caller.
+         throw ex;
+      }
+
+      finally {
+         // Reset common introspection caches in Spring's core, since we
+         // might not ever need metadata for singleton beans anymore...
+         resetCommonCaches();
+      }
+   }
+}
+```
+
+### 加载过程
+
+加载过程分为三个步骤
+
+1. 资源定位
+2. 解析DefaultBeanDefinitionDocumentReader
+3. 注册
+
+##### 资源定位
+
+![image-20210503072417867](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210503072417867.png)
+
+就如上图所示，一直是在调用父类的方法，直到ResourceLoader，这个类中有个getResource方法，可以将外部的资源，读取为Resource类。
+
+##### 解析
+
+
+
+##### 注册
 
