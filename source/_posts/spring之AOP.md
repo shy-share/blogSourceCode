@@ -81,7 +81,122 @@ newProxyInstance方法的三个参数
 
 ###### 注解
 
+aop实现
 
+```java
+package cn.shiyujun.test;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
+
+//将这个类注入到Spring容器中
+@Component
+//使用aOP
+@Aspect
+public class broker {
+    
+    @Before("execution(* cn.shiyujun.test.test01.service())")
+    public void before(){
+        System.out.println("带租客看房");
+        System.out.println("谈价格");
+    }
+
+    @After("execution(* cn.shiyujun.test.test01.service())")
+    public void after(){
+        System.out.println("交钥匙");
+    }
+
+    @Around("execution(* cn.shiyujun.test.test01.service())")
+    public void sayAround(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println("注解类型环绕通知..环绕前");
+        pjp.proceed();//执行方法
+        System.out.println("注解类型环绕通知..环绕后");
+    }
+}
+```
+
+接口
+
+```java
+package cn.shiyujun.test;
+
+public interface hexin {
+    void service();
+}
+```
+
+接口实现类
+
+```java
+package cn.shiyujun.test;
+
+import org.springframework.stereotype.Component;
+
+@Component("helloAOP")
+public class test01 implements hexin {
+
+    @Override
+    public void service() {
+        // 仅仅只是实现了核心的业务功能
+        System.out.println("签合同");
+        System.out.println("收房租");
+    }
+}
+```
+
+xml
+
+```xml
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+
+    <!-- 开启注解扫描 -->
+    <context:component-scan base-package="cn.shiyujun.aop_cglib"/>
+    <!-- 开启aop注解方式，此步骤s不能少，这样java类中的aop注解才会生效 -->
+    <aop:aspectj-autoproxy/>
+    <!-- 强制使用cglib代理，如果不设置，将默认使用jdk的代理，但是jdk的代理是基于接口的 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+</beans>
+```
+
+main类
+
+```java
+package cn.shiyujun.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class main {
+    public static void main(String[] args) {
+
+
+        //这个是application容器，所以就会去所有的已经加载的xml文件里面去找，包括jar包里面的xml文件
+        ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+        //通过ApplicationContext.getBean(beanName)动态加载数据（类）【获取Spring容器中已初始化的bean】。
+        test01 helloWorld=(test01) context.getBean("helloAOP");
+
+        //执行动态加载到的类的方法
+        helloWorld.service();
+    }
+}
+```
+
+运行结果
+
+![image-20210508064751966](https://gitee.com/flow_disaster/blog-map-bed/raw/master/img/image-20210508064751966.png)
 
 ###### xml
 
