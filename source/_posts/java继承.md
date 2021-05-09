@@ -3,6 +3,7 @@ title: java继承
 tags:
   - java
 toc: true
+abbrlink: 2310251744
 date: 2021-05-05 08:01:36
 ---
 

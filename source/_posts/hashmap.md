@@ -227,8 +227,60 @@ final Node<K,V>[] resize() {
 ```
 
 > - hashmap的key只能有一个为null，value可以有多个null
->
-> - HashTable中，无论是key还是value，都不能为null
+>- HashTable中，无论是key还是value，都不能为null
+
+### 遍历
+
+#### 方式
+
+##### lambda
+
+```java
+Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+map.put(2, 10);
+map.put(1, 20);
+map.put(4,40);
+map.put(3,30);
+map.forEach((k, v) -> System.out.println("key: " + k + " value:" + v));
+```
+
+##### for each
+
+```java
+for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		}
+```
+
+##### 迭代键值对
+
+```java
+// 迭代键
+		for (Integer key : map.keySet()) {
+			System.out.println("Key = " + key);
+		}
+ 
+		// 迭代值
+		for (Integer value : map.values()) {
+			System.out.println("Value = " + value);
+		}
+```
+
+#####  Iterator
+
+```java
+Iterator<Map.Entry<Integer, Integer>> entries = map.entrySet().iterator();
+		while (entries.hasNext()) {
+			Map.Entry<Integer, Integer> entry = entries.next();
+			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		}
+```
+
+#### 原理
+
+虽然hashmap的插入数据是无序的，但是它遍历出来的结果都是有序的,并且每次遍历的结果都一样
+
+> 原因就是因为hashmap的数组下标是 hashcode和hashmap的容量大小  按位与出来的结果
 
 ### 线程安全
 

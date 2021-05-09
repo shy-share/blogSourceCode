@@ -3,6 +3,7 @@ title: b树和b+树的区别
 tags:
   - mysql
 toc: true
+abbrlink: 1580086704
 date: 2021-05-06 19:03:46
 ---
 

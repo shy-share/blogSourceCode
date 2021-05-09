@@ -3,6 +3,7 @@ title: Spring之AOP
 tags:
   - spring
 toc: true
+abbrlink: 2157337050
 date: 2021-05-06 20:58:28
 ---
 
@@ -133,6 +134,7 @@ package cn.shiyujun.test;
 
 import org.springframework.stereotype.Component;
 
+//spring中bean的名字
 @Component("helloAOP")
 public class test01 implements hexin {
 
