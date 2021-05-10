@@ -16,9 +16,21 @@ string类型的介绍
 ## 不可变性
 
 ```Java
+//由于是final，所以string是不可继承的
 public final class String
-# 由于是final，所以string是不可变的 
+//final修饰的char[]代表了被存储的数据不可更改性
+//是final和private
+private final char value[];
+//下面这个例子说明，是final和private一起来使得String的数据是不可改变的
+final  int[] array={1,2,3,4};
+array[2]=100;
+System.out.println(array[2]);
 ```
+
+### 原因
+
+1. 只有String是不可改变的，字符串池才有可能实现
+2. 如果字符串是可变的，会引发线程安全的问题
 
 ## 长度限制
 
