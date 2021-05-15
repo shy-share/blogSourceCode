@@ -112,6 +112,7 @@ public @interface Retention {
 public enum RetentionPolicy {
     /**
      * Annotations are to be discarded by the compiler.
+     * 批注将被编译器丢弃
      */
     SOURCE,
 
@@ -119,15 +120,27 @@ public enum RetentionPolicy {
      * Annotations are to be recorded in the class file by the compiler
      * but need not be retained by the VM at run time.  This is the default
      * behavior.
+     *注释将由编译器记录在类文件中，但VM不必在运行时保留它们。 这是默认行为。
      */
+    //
     CLASS,
 
     /**
      * Annotations are to be recorded in the class file by the compiler and
      * retained by the VM at run time, so they may be read reflectively.
-     *
+     *注释将由编译器记录在类文件中，并在运行时由VM保留，因此可以通过反射方式读取它们。
      * @see java.lang.reflect.AnnotatedElement
      */
     RUNTIME
+}
+```
+
+### @Documented
+
+```java
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface Documented {
 }
 ```

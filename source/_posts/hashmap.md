@@ -57,6 +57,8 @@ HashMap不直接使用红黑树，**是因为树节点所占空间是普通节�
 
 为了安全，因为头插法多线程情况下会导致链表成环
 
+> [链表成环视频讲解](https://www.bilibili.com/video/BV1n541177Ea?from=search&seid=3398389594020314132)
+
 那么为什么到了1.8版本才进行修改那？
 
 其实是因为多线程下的hashmap本就不安全，在多线程场景下如果要使用map，也不会使用hashmap，因此等开发人员想到了，才进行修改
@@ -228,6 +230,61 @@ final Node<K,V>[] resize() {
 
 > - hashmap的key只能有一个为null，value可以有多个null
 >- HashTable中，无论是key还是value，都不能为null
+
+#### put
+
+```java
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+```
+
+#### putVal
+
+```java
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+               boolean evict) {
+    Node<K,V>[] tab; Node<K,V> p; int n, i;
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+    if ((p = tab[i = (n - 1) & hash]) == null)
+        tab[i] = newNode(hash, key, value, null);
+    else {
+        Node<K,V> e; K k;
+        if (p.hash == hash &&
+            ((k = p.key) == key || (key != null && key.equals(k))))
+            e = p;
+        else if (p instanceof TreeNode)
+            e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+        else {
+            for (int binCount = 0; ; ++binCount) {
+                if ((e = p.next) == null) {
+                    p.next = newNode(hash, key, value, null);
+                    if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        treeifyBin(tab, hash);
+                    break;
+                }
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    break;
+                p = e;
+            }
+        }
+        if (e != null) { // existing mapping for key
+            V oldValue = e.value;
+            if (!onlyIfAbsent || oldValue == null)
+                e.value = value;
+            afterNodeAccess(e);
+            return oldValue;
+        }
+    }
+    ++modCount;
+    if (++size > threshold)
+        resize();
+    afterNodeInsertion(evict);
+    return null;
+}
+```
 
 ### 遍历
 
