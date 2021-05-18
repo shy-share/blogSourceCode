@@ -7,9 +7,11 @@ abbrlink: 782118306
 date: 2021-04-26 07:56:06
 ---
 
-常用参数
+常用参数和日志打印
 
 <!-- more -->
+
+## 常用设置
 
 | 参数                                 | 解释                                                         |
 | ------------------------------------ | ------------------------------------------------------------ |
@@ -37,8 +39,17 @@ date: 2021-04-26 07:56:06
 | -XX:+DisableExplicltGC               | 禁止显示执行GC，为了避免开发工程师调用system.gc()，在流量高时候频发触发full gc |
 | -XX:MetaspaceSize=10M                | 元空间内存设置                                               |
 | -XX:MaxMetaspaceSize=10M             | 元空间最大内存设置                                           |
-| -XX:+HeapDumpOnOutOfMemoryError      | 在oom的时候自动dump快照出来                                  |
-| -XX:HeapDumpPath=/usr/local/app/oom  | 内存快照存放位置                                             |
-| -XX：+PrintGCDetails                 | 打印gc日志                                                   |
 | -XX:+UseConcMarkSweepGC              | 使用CMS垃圾回收器                                            |
+
+## 打印日志
+
+| 参数                                | 作用                        |
+| ----------------------------------- | --------------------------- |
+| -XX：+PrintGCDetails                | 打印gc详细日志              |
+| -XX:HeapDumpPath=/usr/local/app/oom | 内存快照存放位置            |
+| -XX:+HeapDumpOnOutOfMemoryError     | 在oom的时候自动dump快照出来 |
+| -XX：+PrintGC                       | 打印gc日志                  |
+| -XX: =PrintGCTimesStamps            | 打印gc时间戳                |
+| -XX: +PrintHeapAtGC                 | gc之后，打印堆信息          |
+| -Xloggc                             | 打印日志                    |
 
